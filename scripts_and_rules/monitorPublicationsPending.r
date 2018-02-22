@@ -1,13 +1,15 @@
-#Author Niek Bats
-#Checks if an publication is pending longer then given time
+# \file      monitorPublicationsPending.r
+# \brief     Check if a publication is pending longer then given time.
+# \author    Niek Bats
+# \copyright Copyright (c) 2018, Utrecht University. All rights reserved.
 
 check {
     *count = 0;
     msiGetIcatTime(*currentTime, "unix");
-	
+
     foreach(*row in SELECT COLL_MODIFY_TIME
-        WHERE META_COLL_ATTR_NAME = 'org_vault_status'
-        AND META_COLL_ATTR_VALUE = 'APPROVED_FOR_PUBLICATION') {
+                    WHERE  META_COLL_ATTR_NAME  = 'org_vault_status'
+                    AND    META_COLL_ATTR_VALUE = 'APPROVED_FOR_PUBLICATION') {
         *time = *row.COLL_MODIFY_TIME;
 
         if((int(*currentTime)) - int(*time) > *allowedTimeDiff) {
@@ -17,5 +19,5 @@ check {
     writeLine("stdout", *count)
 }
 
-input *allowedTimeDiff = 86400 #in seconds 1D=86400 1H=3600
+input *allowedTimeDiff = 86400 # in seconds: 86400 seconds = 1 day
 output ruleExecOut
