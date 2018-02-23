@@ -16,7 +16,7 @@ Example: zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/monitorDelayedRules.sh
 
 ## How to install Zabbix agent on yoda servers (allinone and full)
 
-The provisioning of the zabbix-agent can be done with Ansible, with the playbook for yoda-zabbix.
+The provisioning of the zabbix-agent can be done with Ansible, with the playbook zabbix.yml.
 
 Refer to https://github.com/UtrechtUniversity/yoda-ansible/
 
