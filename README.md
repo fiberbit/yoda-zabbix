@@ -84,7 +84,7 @@ All other parameters in the standard zabbix_agentd.conf are unchanged.
 Development (allinone) - passive agent checks configuration, noencryption:
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
-	Server: 192.168.50.20
+	Server=192.168.50.20
 	Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
 	StartAgents=1
 	ListenPort=10050
@@ -93,13 +93,28 @@ Development (allinone) - passive agent checks configuration, noencryption:
 	yoda-TLSConnect=unencrypted
 	yoda-TLSAccept=unencrypted
 
+Development (allinone) - active agent checks only configuration, psk:
+
+	PidFile=/run/zabbix/zabbix_agentd.pid
+	Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
+	ServerActive=192.168.50.20
+	ListenPort=10050
+	ListenIP=192.168.50.10
+	StartAgents=0
+	Hostname=yoda.development
+	AllowRoot=0
+	TLSConnect=psk
+	TLSAccept=psk
+	TLSPSKIdentity=PSK-Development
+	TLSPSKFile=/etc/zabbix/zabbix_agentd.psk	
+	
 Testserver (full-iCat) - active agent checks, psk pre-shared key, encryption, passive checks disabled
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
 	ServerActive=t.b.d.
 	ListenPort=10050
-	ListenIP=192.168.50.10
+	ListenIP=t.b.d.
 	StartAgents=0		
 	Hostname=t.b.d. (e.g. yoda.test as defined in the zabbix server)
 	AllowRoot=0
@@ -128,7 +143,7 @@ Productionservers (full - iCAT servers) - active agent checks, psk pre-shared ke
 	Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
 	ServerActive=zabbix-researchit.westeurope.cloudapp.azure.com:10051
 	ListenPort=10050
-	ListenIP=192.168.50.10
+	ListenIP=t.b.d.
 	StartAgents=0		
 	Hostname=t.b.d. (e.g. yoda.test as defined in the zabbix server)
 	AllowRoot=0
@@ -142,7 +157,7 @@ Productionsservers (full - !iCat servers) - active agent checks, psk pre-shared 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	ServerActive=zabbix-researchit.westeurope.cloudapp.azure.com:10051
 	ListenPort=10050
-	ListenIP=192.168.50.10
+	ListenIP=t.b.d.
 	StartAgents=0		
 	Hostname=t.b.d. (e.g. yoda.test as defined in the zabbix server)
 	AllowRoot=0
