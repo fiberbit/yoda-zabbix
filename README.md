@@ -2,28 +2,41 @@
 
 Instructions for monitoring yoda specific items using zabbix
 
-## How to implement yoda specific items for monitoring using zabbix
+## How to implement yoda specific items for monitoring (on iCAT servers) using zabbix
 
-Add the item key (as defined in the zabbix server) to the file zabbix_agentd.userparams.conf. This file is included in the zabbix_agentd.conf file.
-E.g. UserParameter=yoda.delayedrules.count,sudo /etc/irods/yoda-zabbix/monitorDelayedRules.sh. Only add sudo if zabbix requires sudo permissions to execute the command.
-For scripts and or iRods rules that require sudo, the command should be added to the file yoda-zabbix-sudoers.
-E.g. zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/monitorDelayedRules.sh
+Add the item key (as defined in the zabbix server) to the file zabbix_agentd.userparams.conf.
+
+This file is included in the zabbix_agentd.conf file.
+
+Example: UserParameter=yoda.delayedrules.count,sudo /etc/irods/yoda-zabbix/monitorDelayedRules.sh.
+
+Only add sudo if zabbix requires sudo permissions to execute the command. For scripts and or iRods rules that require sudo, the command should be added to the file yoda-zabbix-sudoers.
+
+Example: zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/monitorDelayedRules.sh
 
 ## How to install Zabbix agent on yoda servers (allinone and full)
 
-	yum install wget
-	wget http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-agent-3.4.6-1.el7.x86_64.rpm
-	sudo rpm -ivh zabbix-agent-3.4.6-1.el7.x86_64.rpm
+The provisioning of the zabbix-agent can be done with Ansible, with the playbook for yoda-zabbix.
+
+Refer to https://github.com/UtrechtUniversity/yoda-ansible/
+
+yum install wget
+
+wget http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-agent-3.4.6-1.el7.x86_64.rpm
+
+sudo rpm -ivh zabbix-agent-3.4.6-1.el7.x86_64.rpm
 
 ## Open port 10050 (passive checks) en 10051 (active checks) on the firewall
 
-	sudo firewall-cmd --add-port=10050/tcp --permanent
-	sudo firewall-cmd --add-port=10051/tcp --permanent
-	sudo firewall-cmd –reload
+sudo firewall-cmd --add-port=10050/tcp --permanent
+
+sudo firewall-cmd --add-port=10051/tcp --permanent
+
+sudo firewall-cmd –reload
 
 ## How to install zabbix-agent as a service (steps to solve a selinux issue):
 
-   ISSUES TO BE SOLVED. BELOW DOES NOT SOLVE THE ISSUE: cannot set resource limit: [13] Permission denied (zabbix_agentd.log)
+ISSUES TO BE SOLVED. BELOW DOES NOT SOLVE THE ISSUE: cannot set resource limit: [13] Permission denied (zabbix_agentd.log)
 	(you may need to yum install -y policycoreutils-python)
 	(the pid in standard zabbix_agentd.conf has been changed to /run/….. (instead of /var/run/….)
 	systemctl enable zabbix-agent
@@ -32,15 +45,10 @@ E.g. zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/monitorDelayedRules.sh
 	semodule -i zabbix_agent_setrlimit.pp
 	systemctl start zabbix-agent
 
-## How to install and maintain yoda monitoring on iCat servers
-
-	add yoda userparams in file zabbix_agentd.userparams.conf e.g. UserParameter=yoda.delayedrules.count,sudo /etc/irods/yoda-zabbix/monitorDelayedRules.sh)
-	the monitoring scripts and rules that require irods permission should be added to the file yoda-zabbix-sudoers (e.g. zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/monitorDelayedRules.sh)
-
 ## Where to install scripts, rules and configuration and presharedkey files
 
-	There are different zabbix_agentd.conf files. The zabbix_agentd.conf for the iCat is different from other servers.
-	The other servers do not have yoda specific monitoring.
+There are different zabbix_agentd.conf files. The zabbix_agentd.conf for the iCat is different from other servers.	The other servers do not have yoda specific monitoring.
+
 	Files for all servers:
 		zabbix_agentd.psk -> /etc/zabbix owner:group zabbix:zabbix, permissions 600
 	New directory to be created for iCat servers -> /etc/irods/yoda-zabbix
@@ -72,7 +80,7 @@ All other parameters in the standard zabbix_agentd.conf are unchanged.
 	
 ## zabbix_agentd.conf flavours:
 
-### Development (allinone) - passive agent checks configuration, noencryption:
+Development (allinone) - passive agent checks configuration, noencryption:
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	Server: 192.168.50.20
@@ -84,7 +92,7 @@ All other parameters in the standard zabbix_agentd.conf are unchanged.
 	yoda-TLSConnect=unencrypted
 	yoda-TLSAccept=unencrypted
 
-	### Testserver (full-iCat) - active agent checks, psk pre-shared key, encryption, passive checks disabled
+Testserver (full-iCat) - active agent checks, psk pre-shared key, encryption, passive checks disabled
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
@@ -99,7 +107,7 @@ All other parameters in the standard zabbix_agentd.conf are unchanged.
 	TLSPSKIdentity=t.b.d. (as defined in the zabbix server)
 	TLSPSKFile=/etc/zabbix/zabbix_agentd.psk
 
-	### Testserver (full - !iCat servers) - active agent checks, psk pre-shared key, encryption, passive checks disabled
+Testserver (full - !iCat servers) - active agent checks, psk pre-shared key, encryption, passive checks disabled
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	ServerActive=t.b.d.
@@ -113,7 +121,7 @@ All other parameters in the standard zabbix_agentd.conf are unchanged.
 	TLSPSKIdentity=t.b.d. (as defined in the zabbix server)
 	TLSPSKFile=/etc/zabbix/zabbix_agentd.psk
 
-	### Productionservers (full - iCAT servers) - active agent checks, psk pre-shared key, encryption, passive checks disabled
+Productionservers (full - iCAT servers) - active agent checks, psk pre-shared key, encryption, passive checks disabled
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
@@ -128,7 +136,7 @@ All other parameters in the standard zabbix_agentd.conf are unchanged.
 	TLSPSKIdentity=t.b.d. (as defined in the zabbix server)
 	TLSPSKFile=/etc/zabbix/zabbix_agentd.psk
 
-	### Productionsservers (full - !iCat servers) - active agent checks, psk pre-shared key, encryption, passive checks disabled
+Productionsservers (full - !iCat servers) - active agent checks, psk pre-shared key, encryption, passive checks disabled
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	ServerActive=zabbix-researchit.westeurope.cloudapp.azure.com:10051
@@ -144,4 +152,8 @@ All other parameters in the standard zabbix_agentd.conf are unchanged.
 		
 ## Pre shared key generation
 		
-	pre-shared key to be stored in zabbix_agentd.psk file and set accordingly in zabbix server host configuration (manual?)
+pre shared key have to be stored in zabbix_agentd.psk file and match with the psk in the zabbix server configuration (manually) for the Yoda Hostname
+
+Detailed information can be found in https://www.zabbix.com/documentation/3.4/manual/encryption/using_pre_shared_keys
+	
+	
