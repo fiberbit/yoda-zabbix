@@ -37,6 +37,7 @@ sudo firewall-cmd –reload
 ## How to install zabbix-agent as a service (steps to solve a selinux issue):
 
 ISSUES TO BE SOLVED. BELOW DOES NOT SOLVE THE ISSUE: cannot set resource limit: [13] Permission denied (zabbix_agentd.log)
+
 	(you may need to yum install -y policycoreutils-python)
 	(the pid in standard zabbix_agentd.conf has been changed to /run/….. (instead of /var/run/….)
 	systemctl enable zabbix-agent
