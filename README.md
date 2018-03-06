@@ -77,8 +77,8 @@ There are different zabbix_agentd.conf files. The zabbix_agentd.conf for the iCa
 	yoda-TLSPSKIdentity
 	yoda-TLSPSKFile
 
-All other parameters in the standard zabbix_agentd.conf are unchanged.	
-	
+All other parameters in the standard zabbix_agentd.conf are unchanged.
+
 ## zabbix_agentd.conf flavours:
 
 Development (allinone) - passive agent checks configuration, noencryption:
@@ -106,8 +106,8 @@ Development (allinone) - active agent checks only configuration, psk:
 	TLSConnect=psk
 	TLSAccept=psk
 	TLSPSKIdentity=PSK-Development
-	TLSPSKFile=/etc/zabbix/zabbix_agentd.psk	
-	
+	TLSPSKFile=/etc/zabbix/zabbix_agentd.psk
+
 Testserver (full-iCat) - active agent checks, psk pre-shared key, encryption, passive checks disabled
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
@@ -141,7 +141,7 @@ Productionservers (full - iCAT servers) - active agent checks, psk pre-shared ke
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
 	Include=/etc/irods/yoda-zabbix/zabbix_agentd.userparams.conf
-	ServerActive=zabbix-researchit.westeurope.cloudapp.azure.com:10051
+	ServerActive=zabbix.host.tld:10051
 	ListenPort=10050
 	ListenIP=t.b.d.
 	StartAgents=0		
@@ -155,7 +155,7 @@ Productionservers (full - iCAT servers) - active agent checks, psk pre-shared ke
 Productionsservers (full - !iCat servers) - active agent checks, psk pre-shared key, encryption, passive checks disabled
 
 	PidFile=/run/zabbix/zabbix_agentd.pid
-	ServerActive=zabbix-researchit.westeurope.cloudapp.azure.com:10051
+	ServerActive=zabbix.host.tld:10051
 	ListenPort=10050
 	ListenIP=t.b.d.
 	StartAgents=0		
@@ -165,11 +165,16 @@ Productionsservers (full - !iCat servers) - active agent checks, psk pre-shared 
 	TLSAccept=psk
 	TLSPSKIdentity=t.b.d. (as defined in the zabbix server)
 	TLSPSKFile=/etc/zabbix/zabbix_agentd.psk
-		
+
 ## Pre shared key generation
-		
+
 pre shared key have to be stored in zabbix_agentd.psk file and match with the psk in the zabbix server configuration (manually) for the Yoda Hostname
 
 Detailed information can be found in https://www.zabbix.com/documentation/3.4/manual/encryption/using_pre_shared_keys
-	
-	
+
+
+LICENSE
+-------
+This project is licensed under the GPLv3 license.
+
+The full license can be found in [LICENSE](LICENSE).
