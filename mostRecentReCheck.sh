@@ -4,18 +4,19 @@
 # \brief	Returns the number of seconds that the Delayed Rule Engine checked for jobs.
 # \copyright	Copyright (c) 2018, Utrecht University. All rights reserved.
 
-log=$(grep ".*reServerMain: checking the queue for jobs" /var/lib/irods/iRODS/server/log/reLog.* | tail -n 1)
-rawDateTime=${log:38:26}
-read -ra array <<< "$rawDateTime"
+filepath=$(ls /var/lib/irods/iRODS/server/log/reLog.* | tail -n 1)
 
-year=${array[0]}
-year=${year:0:4}
+log=$(grep ".*reServerMain: checking the queue for jobs" $filepath | tail -n 1)
+
+year=${filepath:38:4}
+
+read -ra array <<< "$log"
 month=${array[0]}
-month=${month:11:3}
 day=${array[1]}
 time=${array[2]}
 
 currentTime=$(date +%s)
-refinedDateTime="$day$month$year $time"
-logTime=$(date -d "$refinedDateTime" +%s)
-echo $((currentTime - logTime))
+currentDate="$day $month $year $time"
+logTime=$(date -d "$currentDate" +%s)
+
+echo $(($currentTime - $logTime))
