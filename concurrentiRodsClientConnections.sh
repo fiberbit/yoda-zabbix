@@ -6,4 +6,4 @@
 # \				total lines - the first line (server:...) - ips connection for this script 
 # \copyright	Copyright (c) 2018, Utrecht University. All rights reserved.
 
-echo $(($(ips | wc -l) -2))
+echo $(($(sudo -u irods ips | wc -l) -2))
