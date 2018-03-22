@@ -7,7 +7,8 @@
 # \author    Niek Bats
 # \copyright Copyright (c) 2018, Utrecht University. All rights reserved.
 
-function add {
+# Adds its first parameter to uniqueUsers if uniqueUsers doesnt already have it.
+function addUniqueUser {
     for user in ${uniqueUsers[@]}
     do
         if [ $user == $1 ]
@@ -18,13 +19,23 @@ function add {
     uniqueUsers+=($1)
 }
 
-IFS='#' read -ra array <<< $(sudo -u irods ips)
+# Runs the ips command with sudo -u irods rights.
+# Then splits the result on # by setting bashes delimeter(IFS) to '#'.
+# And then reads the result into an array named ipsOutput.
+IFS='#' read -ra ipsOutput <<< $(sudo -u irods ips)
+
+# Makes an array named uniqueUsers.
 declare -a uniqueUsers
 
-for ((i = 1; i < ${#array[@]} - 1; i++));
+# For each element of ipsOutput besides the first and the last.
+for ((i = 1; i < ${#ipsOutput[@]} - 1; i++));
 do
-    IFS=' ' read -ra array2 <<< ${array[$i]}
-    add ${array2[-1]}
+    # Split the element on ' ' and read it into splitIpsOutputElement.
+    IFS=' ' read -ra splitIpsOutputElement <<< ${ipsOutput[$i]}
+    # Passes the last element of splitIpsOutputElement
+    # which should always be a username to the function addUniqueUser.
+    addUniqueUser ${splitIpsOutputElement[-1]}
 done
 
+# Prints the length of uniqueUsers.
 echo ${#uniqueUsers[@]}
