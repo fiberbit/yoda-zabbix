@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# \file		mostRecentReCheck.sh
-# \brief	Returns the number of seconds that the Delayed Rule Engine checked for jobs.
-# \copyright	Copyright (c) 2018, Utrecht University. All rights reserved.
+# \file      mostRecentReCheck.sh
+# \brief     Returns the number of seconds since the last time that the delayed rule engine checked for jobs.
+# \copyright Copyright (c) 2018, Utrecht University. All rights reserved.
 
 filepath=$(ls /var/lib/irods/iRODS/server/log/reLog.* | tail -n 1)
 
