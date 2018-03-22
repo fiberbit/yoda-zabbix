@@ -6,4 +6,4 @@
 # \             specified in the zabbix item key parameter is returned 
 # \copyright	Copyright (c) 2018, Utrecht University. All rights reserved.
 
-sudo -u irods irule -F /etc/irods/yoda-zabbix/monitorPublicationsPending.r
+sudo -u irods irule -F /etc/irods/yoda-zabbix/monitorPublicationsPending.r $1
