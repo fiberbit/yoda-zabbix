@@ -6,7 +6,7 @@
 # \copyright    Copyright (c) 2018, Utrecht University. All rights reserved.
 
 # Get latest log file.
-filepaths=$(sudo -u irods ls /var/lib/irods/iRODS/server/log/rodsLog.* | tail -n 2)
+filepaths=$(sudo -u irods ls /var/lib/irods/log/rodsLog.* | tail -n 2)
 
 # Gets current month and day.
 monthDay=$(date +"%b %d")
