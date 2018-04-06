@@ -1,15 +1,18 @@
 #!/bin/bash
-
 # \file         dailyRodslogErrors.sh
 # \brief        Count number of current errors of the current day found in the rodsLog.
 # \author       Niek Bats
 # \copyright    Copyright (c) 2018, Utrecht University. All rights reserved.
 
-# Get latest log file.
+# gets latest log file.
 filepaths=$(sudo -u irods ls /var/lib/irods/log/rodsLog.* | tail -n 2)
 
-# Gets current month and day.
-monthDay=$(date +"%b %d")
-
-# Get lines containing error and month day.
+#gets current month day
+month=$(date +"%b")
+day=$(date +"%e")
+space=" "
+#month day is constructed according to format in the rodsLog
+if (($day<=9)); then monthDay="$month$space$day";
+fi
+#counts lines containing ERROR in current month day
 echo $(sudo -u irods grep "$monthDay" $filepaths | grep "ERROR" | wc -l)

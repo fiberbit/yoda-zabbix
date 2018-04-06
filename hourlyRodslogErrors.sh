@@ -8,7 +8,13 @@
 filepaths=$(sudo -u irods ls /var/lib/irods/log/rodsLog.* | tail -n 2)
 
 #gets current month day and hour
-monthDayHour=$(date +"%b %d %H")
-
-#gets lines containing error and month day hour
+month=$(date +"%b")
+day=$(date +"%e")
+hour=$(date +"%H")
+space=" "
+#month day hour is constructed according to format in the rodsLog
+if (($day<=9)); then monthDay="$month$space$day";
+fi
+monthDayHour="$monthDay$space$hour"
+#counts lines containing ERROR in current month day hour
 echo $(sudo -u irods grep "$monthDayHour" $filepaths | grep "ERROR" | wc -l)
