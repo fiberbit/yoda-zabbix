@@ -6,9 +6,14 @@
 #.\          Initial version
 # \copyright Copyright (c) 2018, Utrecht University. All rights reserved.
 
-# Gets current month and day.
-monthDay=$(date +"%b %d")
+#gets current month day
+month=$(date +"%b")
+day=$(date +"%e")
+space=" "
+#month day is constructed according to format in the rodsLog
+if (($day<=9)); then monthDay="$month$space$day";
+fi
 
-# Get lines containing Killed Process and month day.
+# returns count of lines containing Killed Process and month day.
 echo $(sudo -u root grep "$monthDay" /var/log/messages | grep "Killed" | wc -l)
 
