@@ -14,6 +14,6 @@ space=" "
 if (($day<=9)); then monthDay="$month$space$day";
 fi
 
-# returns count of lines containing Killed Process and month day.
-echo $(sudo -u root grep "$monthDay" /var/log/messages | grep "Killed" | wc -l)
+# returns count of lines containing Killed process and month day.
+echo $(sudo -u root grep "$monthDay" /var/log/messages | grep "Killed process" | wc -l)
 
