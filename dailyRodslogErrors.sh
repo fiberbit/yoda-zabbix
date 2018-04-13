@@ -12,7 +12,7 @@ month=$(date +"%b")
 day=$(date +"%e")
 space=" "
 #month day is constructed according to format in the rodsLog
-if (($day<=9)); then monthDay="$month$space$day";
-fi
+monthDay="$month$space$day"
+
 #counts lines containing ERROR in current month day
 echo $(sudo -u irods grep "$monthDay" $filepaths | grep "ERROR" | wc -l)

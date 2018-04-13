@@ -13,8 +13,7 @@ day=$(date +"%e")
 hour=$(date +"%H")
 space=" "
 #month day hour is constructed according to format in the rodsLog
-if (($day<=9)); then monthDay="$month$space$day";
-fi
-monthDayHour="$monthDay$space$hour"
+monthDayHour="$month$space$day$space$hour"
+
 #counts lines containing ERROR in current month day hour
 echo $(sudo -u irods grep "$monthDayHour" $filepaths | grep "ERROR" | wc -l)

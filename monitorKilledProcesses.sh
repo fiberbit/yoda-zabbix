@@ -11,8 +11,7 @@ month=$(date +"%b")
 day=$(date +"%e")
 space=" "
 #month day is constructed according to format in the rodsLog
-if (($day<=9)); then monthDay="$month$space$day";
-fi
+monthDay="$month$space$day";
 
 # returns count of lines containing Killed process and month day.
 echo $(sudo -u root grep "$monthDay" /var/log/messages | grep "Killed process" | wc -l)
