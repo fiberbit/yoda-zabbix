@@ -3,7 +3,6 @@ zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/internalUsersCount.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/irodsGroupsCount.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/externalUsersCount.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/monitorPublicationsPending.sh
-zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/mostRecentReCheck.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/concurrentiRodsClientConnections.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/concurrentiRodsUsers.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/dailyRodslogErrors.sh
