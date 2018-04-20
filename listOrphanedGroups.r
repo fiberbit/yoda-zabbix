@@ -1,5 +1,5 @@
 # \file      listOrphanedGroups.r
-# \brief     returns a list of groups without a internal user (...@uu.nl)
+# \brief     returns a list of groups without an internal user (...@uu.nl)
 # \author    Niek Bats
 # \copyright Copyright (c) 2018, Utrecht University. All rights reserved.
 
