@@ -9,3 +9,4 @@ zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/dailyRodslogErrors.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/hourlyRodslogErrors.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/monitorKilledProcesses.sh
 zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/listOrphanedGroups.sh
+zabbix ALL=NOPASSWD: /etc/irods/yoda-zabbix/replicationErrors.sh
