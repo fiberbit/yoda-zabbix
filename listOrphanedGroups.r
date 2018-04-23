@@ -1,8 +1,10 @@
 # \file      listOrphanedGroups.r
-# \brief     returns a list of groups without an internal user (...@uu.nl)
+# \brief     Returns a list of groups without an internal user
+#            (a user whos name ends at: @uu.nl) as groupmanager.
 # \author    Niek Bats
 # \copyright Copyright (c) 2018, Utrecht University. All rights reserved.
 
+#prints all groups without an internal groupmanager
 getOrphanedGroups {
         foreach(*groups in SELECT USER_NAME
                            WHERE USER_TYPE = 'rodsgroup') {
@@ -14,6 +16,7 @@ getOrphanedGroups {
         }
 }
 
+#returns false if group has an internaluser else true
 isOrphanedGroup(*group) = {
         *return = true;
         foreach(*managers in SELECT META_USER_ATTR_VALUE
@@ -27,8 +30,6 @@ isOrphanedGroup(*group) = {
                         *return = false;
                         break();
                 }
-
-                #writeLine("stdout", "*group;*manager;" ++ str(*addToList))
         }
         *return;
 }
