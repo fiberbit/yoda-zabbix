@@ -7,8 +7,8 @@
 #gets the two latest rodslog files
 filepaths=$(sudo -u irods ls /var/lib/irods/log/rodsLog.* | tail -n 2)
 
-#gets lines that contain uuReplicate
-replicationErrors=$(sudo -u irods grep "uuReplicate" $filepaths )
+#gets lines that contain uuReplicate or msiDataObjRepl
+replicationErrors=$(sudo -u irods grep -E "uuReplicate|msiDataObjRepl" $filepaths )
 
 counter=0
 #gets current time in seconds
