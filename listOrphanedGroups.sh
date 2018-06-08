@@ -4,4 +4,4 @@
 # \author    Niek Bats
 # \copyright    Copyright (c) 2018, Utrecht University. All rights reserved.
 
-sudo -u irods irule -F /etc/irods/yoda-zabbix/listOrphanedGroups.r
+sudo -u irods irule -F /etc/zabbix/zabbix_agentd.d/listOrphanedGroups.r
