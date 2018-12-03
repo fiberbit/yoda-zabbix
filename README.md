@@ -31,9 +31,9 @@ Details can be found in /roles/yoda-zabbixagent/tasks/main.yml (deployment of za
 
 Detailed information can be found in /roles/yoda-zabbixagent/templates
 
-## Pre-shared-key handling
+## Pre-shared-key and psk-identity handling
 
-The pre-shared-key for the zabbix_agentd (zabbix_agentd.psk) is generated during installation using Ansible during deployment of the zabbix-agent. The same key has to be configured in the zabbix-server manually.
+The pre-shared-key for the zabbix_agentd (zabbix_agentd.psk) is generated during installation using Ansible during deployment of the zabbix-agent. The same key (PSK) has to be configured in the zabbix-server manually. The PSK-Identity also has to be changed. The PSK-identity is also generated during installation (convention PSK-fqdn).
 
 For information on using pre shared keys refer to:
 
