@@ -9,4 +9,4 @@
 
 #counts lines containing ERROR in the current month day
 #echo $(sudo -u irods grep "$(date +"%b %e")" $filepaths | grep -c "ERROR")
-echo "0 - 1000, 1 - 3000, 2 - 50, 3 - 5"
+echo "0 - 1000, 1 - 3000, 2 - 50, 3 - 5, 1 - 6"
