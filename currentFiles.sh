@@ -9,4 +9,5 @@
 
 #counts lines containing ERROR in the current month day
 #echo $(sudo -u irods grep "$(date +"%b %e")" $filepaths | grep -c "ERROR")
-echo "0 - 1000, 1 - 3000, 2 - 50, 3 - 5, 1 - 6"
+#echo "0 - 1000, 1 - 3000, 2 - 50, 3 - 5, 1 - 6"
+echo $(sudo -u irods iquest --no-page "%d,%d" "select DATA_SIZE,COUNT(DATA_SIZE)")
