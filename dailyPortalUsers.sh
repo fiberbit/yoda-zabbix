@@ -1,6 +1,6 @@
 #!/bin/bash
 # \file         dailyPortalUsers.sh
-# \brief        Counts the number of unique portal users during the current day.
+# \brief        Counts the number of unique portal users of the previous day.
 # \author       
 # \copyright    Copyright (c) 2019, Utrecht University. All rights reserved.
 

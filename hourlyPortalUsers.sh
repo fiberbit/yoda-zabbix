@@ -1,6 +1,6 @@
 #!/bin/bash
 # \file         hourlyPortalUsers.sh
-# \brief        Counts the number of unique portal users during the current clockhour.
+# \brief        Counts the number of unique portal users of the previous hour.
 # \author       
 # \copyright    Copyright (c) 2019, Utrecht University. All rights reserved.
 

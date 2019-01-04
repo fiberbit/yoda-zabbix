@@ -1,6 +1,6 @@
 #!/bin/bash
 # \file         hourlyWebdavUsers.sh
-# \brief        Counts the number of unique webdav users during the current clockhour.
+# \brief        Counts the number of unique webdav users of the previous hour.
 # \author       
 # \copyright    Copyright (c) 2019, Utrecht University. All rights reserved.
 
