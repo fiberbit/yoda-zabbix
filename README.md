@@ -19,8 +19,8 @@ Make sure the yoda-zabbix-sudoers has no syntax errors and has been tested. A sy
 
 ## How to install Zabbix agent on yoda servers (allinone and full)
 
-The provisioning of the zabbix-agent, postgresql monitoring and specific yoda monitoring can be done with Ansible, with the playbook zabbix.yml.
-
+The provisioning of the zabbix-agent, postgresql monitoring and specific yoda monitoring can be done with Ansible, with the playbook zabbix.yml. The actual zabbix-server and zabbix_version can be defined in your environment configuration /group_vars/main.yml.
+ 
 Refer to https://github.com/UtrechtUniversity/yoda-ansible/ (do not use the master, but a release branch)
 
 Details can be found in /roles/yoda-zabbixagent/tasks/main.yml (deployment of zabbixagent), /roles/yoda-zabbixdatabase/tasks/main.yml (deployment of postgresql monitoring rpm) and /roles/yoda-zabbixyodaitems/tasks/main.yml (deployment of specific yoda monitoring on the iCAT server)
