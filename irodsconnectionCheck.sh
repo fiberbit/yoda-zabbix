@@ -5,4 +5,4 @@
 # \copyright    Copyright (c) 2019, Utrecht University. All rights reserved.
 
 # gets irods basic server information (also used by Zabbix to check connection via port 1247)
-echo $(sudo -u irods imiscsvrinfo)
+echo "$(sudo -u irods imiscsvrinfo)"
