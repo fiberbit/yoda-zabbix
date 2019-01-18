@@ -1,13 +1,8 @@
 #!/bin/bash
 # \file         currentFiles.sh
-# \brief        Provides and overview of number of files within filesize ranges.
-# \author       
+# \brief        returns the current number of irods files from the irods database.
+# \author       Hans Kleinloog
 # \copyright    Copyright (c) 2019, Utrecht University. All rights reserved.
 
-# gets latest log file.
-# filepaths=$(sudo -u irods ls /var/lib/irods/log/rodsLog.* | tail -n 2)
-
-#counts lines containing ERROR in the current month day
-#echo $(sudo -u irods grep "$(date +"%b %e")" $filepaths | grep -c "ERROR")
-#echo "0 - 1000, 1 - 3000, 2 - 50, 3 - 5, 1 - 6"
-echo $(sudo -u irods iquest --no-page "%d,%d" "select DATA_SIZE,COUNT(DATA_SIZE)")
+#echo TODO $(sudo -u irods iquest --no-page "%d,%d" "select DATA_SIZE,COUNT(DATA_SIZE)")
+#echo "1003002001000"
