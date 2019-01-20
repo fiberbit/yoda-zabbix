@@ -4,4 +4,5 @@
 # \author       Hans Kleinloog
 # \copyright    Copyright (c) 2019, Utrecht University. All rights reserved.
 
-echo $(sudo -u irods iquest "select count(DATA_ID)")
+nrOfFiles="$(sudo -u irods iquest "select count(DATA_ID)")"
+echo ${nrOfFiles:10}
