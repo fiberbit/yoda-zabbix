@@ -29,7 +29,14 @@ Details can be found in /roles/yoda-zabbixagent/tasks/main.yml (deployment of za
 
 	zabbix-server
 
+To be added to your environment configuration file in group_vars/xxxx.yml.
 Detailed information can be found in /roles/yoda-zabbixagent/templates
+
+## Variable to select version (release) of yoda-zabbix for irods specific monitoring on iCAT and Resource servers
+
+	zabbix_version
+
+To be added to your environment configuration file in group_vars/xxxx.yml or as --extra-vars "zabbix_version=vx.y.z" on the commandline
 
 ## Pre-shared-key and psk-identity handling
 
@@ -39,7 +46,13 @@ For information on using pre shared keys refer to:
 
 https://www.zabbix.com/documentation/3.4/manual/encryption/using_pre_shared_keys
 
+## Release notes
 
+V1.4.1
+	irods specific monitoring now also deployed on resource servers (e.g. rodsLog errors)
+	current (irods) files (count of DATA-ID) can be monitored
+	irods service status on iCAT and Resource service can be monitored (using iCommand imiscsvrinfo
+	
 
 LICENSE
 -------
