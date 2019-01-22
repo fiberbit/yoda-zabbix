@@ -49,7 +49,9 @@ https://www.zabbix.com/documentation/3.4/manual/encryption/using_pre_shared_keys
 
 V1.4.1
 	irods specific monitoring now also deployed on resource servers (e.g. rodsLog errors)
+	
 	current (irods) files (count of DATA-ID) can be monitored
+	
 	irods service status on iCAT and Resource service can be monitored (using iCommand imiscsvrinfo
 	
 
