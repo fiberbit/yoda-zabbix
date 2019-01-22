@@ -53,7 +53,7 @@ V1.4.1
 	
 	current (irods) files (count of DATA-ID) can be monitored
 	
-	irods service status on iCAT and Resource service can be monitored (using iCommand imiscsvrinfo
+	irods service status on iCAT and Resource service can be monitored (using iCommand imiscsvrinfo)
 	
 
 
