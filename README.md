@@ -27,7 +27,7 @@ Details can be found in /roles/yoda-zabbixagent/tasks/main.yml (deployment of za
 
 ## Variable for  yoda zabbix_agentd.conf for which the value depends on the fqdn of the zabbix-server that monitors the yoda system:
 
-	zabbix-server
+	zabbix_server
 
 To be added to your environment configuration file in group_vars/xxxx.yml.
 Detailed information can be found in /roles/yoda-zabbixagent/templates
