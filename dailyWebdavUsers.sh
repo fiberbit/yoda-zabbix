@@ -8,4 +8,4 @@
 filepath=/var/log/httpd/webdav_access.log
 
 #counts unique webdav user logins in the current day
-echo $(grep "$(date +'%d/%b/%Y')" $filepath | grep '"GET / HTTP/1.1" 200' | awk '{print $3}' | sort | uniq | wc -l)
+echo $(grep "$(date +'%d/%b/%Y')" $filepath | grep '/ HTTP/1.1" 20' | awk '{print $3}' | sort | uniq | wc -l)
