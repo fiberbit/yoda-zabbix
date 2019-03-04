@@ -60,7 +60,7 @@ V1.4.2
 
 	https webdav connections and portal connections are logged in separate apache log files.
 
-        The number of connections is retrieved by new Zabbix items. These items are:
+	The number of connections is retrieved by new Zabbix items. These items are:
 
 	yoda.daily.portalusers, yoda.hourly.portalusers, yoda.daily.webdavusers and yoda.hourly.webdavusers
 	
