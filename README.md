@@ -56,6 +56,11 @@ V1.4.1
 	
 	irods service status on iCAT and Resource service can be monitored (using iCommand imiscsvrinfo)
 		
+V1.4.2
+
+	https webdav connections and portal connections are logged in separate apache log files. The number of connections is retrieved
+	by Zabbix items yoda.daily.portalusers, yoda.hourly.portalusers, yoda.daily.webdavusers and yoda.hourly.webdavusers
+	Requires Yoda release 1.4.1
 
 LICENSE
 -------
