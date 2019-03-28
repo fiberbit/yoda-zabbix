@@ -5,8 +5,7 @@
 # \copyright    Copyright (c) 2019, Utrecht University. All rights reserved.
 
 # gets latest log file.
-#filepaths=$(sudo -u irods ls /var/lib/irods/log/rodsLog.* | tail -n 2)
+filepath=/var/log/httpd/webdav_access.log
 
-#counts lines containing ERROR in the current month day
-#echo $(sudo -u irods grep "$(date +"%b %e")" $filepaths | grep -c "ERROR")
-echo 10
+#counts unique webdav user logins in the current day
+echo $(grep "$(date +'%d/%b/%Y')" $filepath | grep '/ HTTP/1.1" 20' | awk '{print $3}' | sort | uniq | wc -l)
