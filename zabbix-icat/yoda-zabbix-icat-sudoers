@@ -6,3 +6,4 @@ zabbix ALL=NOPASSWD: /etc/zabbix/zabbix_agentd.d/monitorPublicationsPending.sh
 zabbix ALL=NOPASSWD: /etc/zabbix/zabbix_agentd.d/listOrphanedGroups.sh
 zabbix ALL=NOPASSWD: /etc/zabbix/zabbix_agentd.d/replicationErrors.sh
 zabbix ALL=NOPASSWD: /etc/zabbix/zabbix_agentd.d/currentFiles.sh
+~
