@@ -3,27 +3,27 @@
 
 Instructions for monitoring yoda specific items using zabbix
 
-## How to implement yoda specific items for monitoring (on iCAT servers) using zabbix
+## How to implement specific items for monitoring centos virtual machines, yoda-portal, icat server, resource server, database server using zabbix
 
-Add the item key (as defined in the zabbix server) to the file zabbix_agentd.userparams.conf.
+Currently there are 5 folders to hold specific item definition and related files for the different roles. How to add new items is thesame for each specific role. Different roles can be on a single virtual machine or separate virtual machines.
 
-This file is included in the zabbix_agentd.conf file.
+A specific item is added to the file yoda_role.userparams.conf, where role can be system, portal, irodscommon, icat or resource
 
-Example: UserParameter=yoda.delayedrules.count,sudo /etc/zabbix/zabbix_agentd.d/monitorDelayedRules.sh.
+Example: UserParameter=yoda.delayedrules.count,sudo /etc/zabbix/zabbix_agentd.d/monitorDelayedRules.sh (can be found in yoda-zabbix-icat folder, file yoda_icat.userparams.conf.
 
-Only add sudo if the zabbix agent requires sudo permissions to execute the command. For scripts and or iRods rules that require sudo, the command should be added to the file yoda-zabbix-sudoers.
+Add sudo if the zabbix agent requires sudo permissions to execute the command. For scripts and or iRods rules that require sudo, the command should be added to the file yoda-zabbix-role-sudoers file.
 
 Example: zabbix ALL=NOPASSWD: /etc/zabbix/zabbix_agentd.d/monitorDelayedRules.sh
 
-Make sure the yoda-zabbix-sudoers has no syntax errors and has been tested. A syntax error corrupts sudoers and can only be corrected with a re-install! Also duplicate lines are not allowed (also not flagged in the visudo linux editor).
+Make sure the yoda-zabbix-role-sudoers file has no syntax errors and has been tested. A syntax error corrupts sudoers and can only be corrected with a re-install! Also duplicate lines are not allowed (also not flagged in the visudo linux editor).
 
 ## How to install Zabbix agent on yoda servers (allinone and full)
 
-The provisioning of the zabbix-agent, postgresql monitoring and specific yoda monitoring can be done with Ansible, with the playbook zabbix.yml. The actual zabbix-server and zabbix_version can be defined in your environment configuration /group_vars/main.yml.
+The provisioning of the zabbix-agent, postgresql monitoring and specific yoda monitoring can be done with Ansible, with the playbook zabbix.yml. The actual zabbix-server and zabbix_version can be defined in your environment configuration /group_vars/main.yml. The sudoers files for the different roles are copied to /etc/sudoers.d and permissions and ownership is set as required. The userparams.conf files, .sh scripts and .r rules are copied to /etc/zabbix/zabbix_agentd and permissions and ownership is set as required.
  
 Refer to https://github.com/UtrechtUniversity/yoda-ansible/ (do not use the master, but a release branch)
 
-Details can be found in /roles/yoda-zabbixagent/tasks/main.yml (deployment of zabbixagent), /roles/yoda-zabbixdatabase/tasks/main.yml (deployment of postgresql monitoring rpm) and /roles/yoda-zabbixyodaitems/tasks/main.yml (deployment of specific yoda monitoring on the iCAT server)
+Details can be found in /roles/yoda-zabbix-system/tasks/main.yml (deployment of zabbixagent, download of this repository and installation of system specific items), /roles/yoda-zabbix-database/tasks/main.yml (deployment of postgresql monitoring rpm), /roles/yoda-zabbix-icat/tasks/main.yml (icat specific items), /roles/yoda-zabbix-resource/tasks/main.yml (deployment of specific resource server items) and /roles/yoda-zabbix-portal/tasks/main.yml (deployment of specific portal items). All roles include role yoda-zabbix-system (which includes role common). 
 
 ## Variable for  yoda zabbix_agentd.conf for which the value depends on the fqdn of the zabbix-server that monitors the yoda system:
 
@@ -36,7 +36,7 @@ Detailed information can be found in /roles/yoda-zabbixagent/templates
 
 	zabbix_version
 
-To be added to your environment configuration file in group_vars/xxxx.yml or as --extra-vars "zabbix_version=vx.y.z" on the commandline
+To be added to your environment configuration file in group_vars/xxxx.yml or as --extra-vars "zabbix_version=vx.y.z" or "zabbix_version=release-1.5" on the commandline
 
 ## Pre-shared-key and psk-identity handling
 
@@ -63,8 +63,17 @@ V1.4.2
 	The number of connections is retrieved by new Zabbix items. These items are:
 
 	yoda.daily.portalusers, yoda.hourly.portalusers, yoda.daily.webdavusers and yoda.hourly.webdavusers
+	(only supported when portal is combined with icat on thesame virtual machine
 	
 	Requires Yoda release 1.4.1
+
+Release-1.5
+
+        no changes
+	
+Release-1.6 to be released
+
+	separation of specific items for system (all centos vm's), icat, resource, irodscommon (icat and resource) and portal.
 
 LICENSE
 -------
