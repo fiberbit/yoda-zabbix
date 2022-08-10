@@ -46,41 +46,12 @@ For information on using pre shared keys refer to:
 
 https://www.zabbix.com/documentation/3.4/manual/encryption/using_pre_shared_keys
 
-## Release notes
+## Change log
 
-V1.4.1
+See [Change log](CHANGELOG.md).
 
-	irods specific monitoring now also deployed on resource servers (e.g. rodsLog errors)
-	
-	current (irods) files (count of DATA-ID) can be monitored
-	
-	irods service status on iCAT and Resource service can be monitored (using iCommand imiscsvrinfo)
-		
-V1.4.2
+## License
 
-	https webdav connections and portal connections are logged in separate apache log files.
-
-	The number of connections is retrieved by new Zabbix items. These items are:
-
-	yoda.daily.portalusers, yoda.hourly.portalusers, yoda.daily.webdavusers and yoda.hourly.webdavusers
-	(only supported when portal is combined with icat on thesame virtual machine
-	
-	Requires Yoda release 1.4.1
-
-Release-1.5
-
-        no changes
-	
-Release-1.6 to be released
-
-	separation of specific items for system (all centos vm's), icat, resource, irodscommon (icat and resource) and portal.
-
-LICENSE
--------
 This project is licensed under the GPLv3 license.
 
 The full license can be found in [LICENSE](LICENSE).
-
-
-
-
