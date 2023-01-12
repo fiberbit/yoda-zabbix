@@ -8,4 +8,4 @@
 filepath=/var/log/httpd/webdav_access.log
 
 # counts unique webdav users in the past hour
-./read-apache-logs.py --last hour "$filepath" | grep '/ HTTP/1.1" 20' | awk '{print $3}' | sort | uniq | wc -l
+/etc/zabbix/zabbix_agentd.d/read-apache-logs.py --last hour "$filepath" | grep '/ HTTP/1.1" 20' | awk '{print $3}' | sort | uniq | wc -l

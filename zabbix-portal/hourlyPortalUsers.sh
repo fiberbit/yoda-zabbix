@@ -8,4 +8,4 @@
 filepath=/var/log/httpd/portal_access.log
 
 # counts lines containing login HTTP in the past hour
-./read-apache-logs.py --last hour "$filepath" | grep -c '"GET /user/login HTTP/1.1" 200'
+/etc/zabbix/zabbix_agentd.d/read-apache-logs.py --last hour "$filepath" | grep -c '"GET /user/login HTTP/1.1" 200'
